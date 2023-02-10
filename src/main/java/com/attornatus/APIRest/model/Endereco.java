@@ -14,13 +14,14 @@ public class Endereco {
     private String cep;
     private String numero;
     private String cidade;
-    boolean enderecoPrincipal;
+    @Enumerated(EnumType.STRING)
+    EnderecoPrincipal enderecoPrincipal;
 
 
     public Endereco() {
     }
 
-    public Endereco(String logradouro, String cep, String numero, String cidade, boolean enderecoPrincipal) {
+    public Endereco(String logradouro, String cep, String numero, String cidade, EnderecoPrincipal enderecoPrincipal) {
         this.logradouro = logradouro;
         this.cep = cep;
         this.numero = numero;
@@ -61,13 +62,11 @@ public class Endereco {
         this.cidade = cidade;
     }
 
-    public boolean isEnderecoPrincipal() {
-        return enderecoPrincipal = false;
+    public EnderecoPrincipal getEnderecoPrincipal() {
+        return enderecoPrincipal;
     }
 
-    public void setEnderecoPrincipal(boolean enderecoPrincipal) {
+    public void setEnderecoPrincipal(EnderecoPrincipal enderecoPrincipal) {
         this.enderecoPrincipal = enderecoPrincipal;
     }
-
-
 }

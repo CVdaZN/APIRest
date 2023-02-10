@@ -1,5 +1,6 @@
 package com.attornatus.APIRest.service.imp;
 
+import com.attornatus.APIRest.component.EnderecoValidador;
 import com.attornatus.APIRest.model.Endereco;
 import com.attornatus.APIRest.repository.EnderecoRepository;
 import com.attornatus.APIRest.service.EnderecoService;
@@ -20,6 +21,8 @@ public class EnderecoServiceImp implements EnderecoService {
     @Autowired
     private PessoaService pessoaService;
 
+    @Autowired
+    EnderecoValidador enderecoValidador;
 
     @Autowired
     public EnderecoServiceImp(EnderecoRepository repository, EnderecoRepository enderecoRepository, PessoaService pessoaService) {
@@ -30,7 +33,8 @@ public class EnderecoServiceImp implements EnderecoService {
     @Override
     @Transactional
     public Endereco criar(Endereco endereco) {
-        endereco = enderecoRepository.save(endereco);
+        enderecoValidador.validarFormato(endereco);
+        enderecoRepository.save(endereco);
         return endereco;
     }
 
